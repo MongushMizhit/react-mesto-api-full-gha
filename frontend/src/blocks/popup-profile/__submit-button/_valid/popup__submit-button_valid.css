@@ -1,0 +1,10 @@
+.popup__submit-button_valid {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.popup__submit-button_valid:hover {
+    cursor: pointer;
+    opacity: .8;
+    transition: opacity .2s linear;
+}

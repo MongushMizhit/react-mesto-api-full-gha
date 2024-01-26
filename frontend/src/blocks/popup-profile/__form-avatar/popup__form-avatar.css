@@ -1,0 +1,5 @@
+.popup__form-avatar {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 54px;
+}

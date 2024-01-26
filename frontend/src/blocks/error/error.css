@@ -1,0 +1,8 @@
+.error {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    display: block;
+    min-height: calc(15px * 2 + 5px);
+}

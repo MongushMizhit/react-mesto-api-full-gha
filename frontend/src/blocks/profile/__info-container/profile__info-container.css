@@ -1,0 +1,10 @@
+.profile__info-container {
+    margin: 0;
+}
+
+@media screen and (max-width: 640px) {
+    .profile__info-container {
+        text-align: center;
+        max-width: 189px;
+    }
+}

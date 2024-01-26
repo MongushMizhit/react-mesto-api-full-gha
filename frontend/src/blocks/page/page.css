@@ -1,0 +1,14 @@
+.page {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    color: #ffffff;
+    background-color: #000000;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}

@@ -1,0 +1,21 @@
+.authorization__input {
+    width: 98.9%;
+    color: #CCC;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: initial;
+    border: none;
+    border-bottom: 2px solid #CCC;
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+}
+
+.authorization__input:last-of-type {
+    margin-bottom: 0;
+}
+
+.authorization__input:focus {
+    outline: none;
+}
