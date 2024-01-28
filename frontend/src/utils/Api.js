@@ -88,5 +88,5 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'api.mentor.nomoredomainsmonster.ru',
+  baseUrl: 'https://mentor.nomoredomainsmonster.ru',
 });
