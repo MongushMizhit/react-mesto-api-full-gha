@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mentor.nomoredomainsmonster.ru';
+export const BASE_URL = 'https://api.mentor.nomoredomainsmonster.ru';
 
 const handleResponse = (res) => {
     if (res.ok) {
