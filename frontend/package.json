@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "start": "vite"
+    "start": "vite",
+    "deploy": "npm run build && scp -r ./dist/* mizhit@178.154.205.42:/home/mizhit/frontend"
   },
   "dependencies": {
     "react": "^18.2.0",
