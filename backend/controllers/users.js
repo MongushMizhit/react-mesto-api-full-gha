@@ -5,6 +5,7 @@ const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
 const UnauthorizedError = require('../errors/unauthorized-err');
 const ConflictError = require('../errors/conflict-err');
+const { NODE_ENV, JWT_SECRET } = require('../constants/constants');
 
 const getUsers = (req, res, next) => {
   User.find()

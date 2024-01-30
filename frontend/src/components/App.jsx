@@ -32,8 +32,8 @@ function App() {
   const [isProfileEmail, setIsProfileEmail] = useState('email');
   const [cards, setCards] = useState([]);
 
-  const auth = (token) => {
-    return authApi.checkToken(token)
+  const auth = (jwt) => {
+    return authApi.checkToken(jwt)
       .then((res) => {
         console.log('Ответ от сервера при проверке токена:', res);
         if (res) {
@@ -78,7 +78,7 @@ function App() {
     authApi.login(email, password)
       .then((res) => {
         if (res) {
-          setIsProfileEmail(res.email);  
+          setIsProfileEmail(email);  
         }
         setLoggedIn(true);
         navigate("/");
