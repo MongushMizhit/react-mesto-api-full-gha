@@ -145,7 +145,7 @@ const login = (req, res, next) => {
             return next(new UnauthorizedError('Некорректные email или password'));
           }
 
-          const token = jwt.sign({ _id: user._id }, 'your-secret-key', { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
           return res.send({ token });
         });
     })
