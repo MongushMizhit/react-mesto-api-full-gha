@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
@@ -11,18 +10,20 @@ const NotFoundError = require('./errors/not-found-err');
 const { URL_EXP } = require('./constants/constants');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { MONGO_DB } = require('./constants/constants');
+const cors = require('cors');
 
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
+app.use(cors());
+
 mongoose.connect(MONGO_DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-app.use(cors());
 app.use(requestLogger);
 app.use(express.json());
 
