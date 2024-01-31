@@ -1,5 +1,4 @@
-//export const BASE_URL = 'https://api.mentor.nomoredomainsmonster.ru';
-export const BASE_URL = 'http://localhost:3000'
+export const BASE_URL = 'https://api.mentor.nomoredomainsmonster.ru';
 
 const handleResponse = (res) => {
     if (res.ok) {
