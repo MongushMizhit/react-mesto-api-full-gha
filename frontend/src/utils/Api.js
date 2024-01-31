@@ -1,11 +1,6 @@
 class Api {
-  constructor(options) {
-    this._baseUrl = options.baseUrl;
-    this._headers = {
-      ...options.headers,
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-    };
+  constructor() {
+    this._baseUrl = 'https://api.mentor.nomoredomainsmonster.ru';
   }
 
   _checkResponse(res) {
@@ -17,14 +12,20 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      }
     })
     .then(this._checkResponse);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
     })
     .then(this._checkResponse);
   }
@@ -32,7 +33,10 @@ class Api {
   updateProfileInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
       body: JSON.stringify({
         name,
         about,
@@ -44,7 +48,10 @@ class Api {
   addCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
       body: JSON.stringify({
         name,
         link,
@@ -56,7 +63,10 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
     })
     .then(this._checkResponse);
   }
@@ -64,7 +74,10 @@ class Api {
   updateAvatar(newAvatarLink) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
       body: JSON.stringify({ avatar: newAvatarLink }),
     })
     .then(this._checkResponse);
@@ -73,7 +86,10 @@ class Api {
   changeLikeCardStatus(_id, isLiked) {
     return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: `${isLiked ? "DELETE" : "PUT"}`,
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
     })
     .then(this._checkResponse);
   }
@@ -81,12 +97,13 @@ class Api {
   dislikeCard(_id) {
     return fetch(`${this._baseUrl}/cards/${_id}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-type': 'application/json'
+      },
     })
     .then(this._checkResponse);
   }
 }
 
-export const api = new Api({
-  baseUrl: 'https://api.mentor.nomoredomainsmonster.ru',
-});
+export const api = new Api();
