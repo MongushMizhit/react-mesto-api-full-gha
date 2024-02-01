@@ -2,17 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const { celebrate, Joi, errors } = require('celebrate');
-const usersRouter = require('./routes/users');
-const cardsRouter = require('./routes/cards');
-const { login } = require('./controllers/users');
-const { createUser } = require('./controllers/users');
-const NotFoundError = require('./errors/not-found-err');
-const { URL_EXP } = require('./constants/constants');
+const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const router = require('./routes/index');
+const errorHandler = require('./middlewares/errorHandler');
 const { MONGO_DB } = require('./constants/constants');
 const cors = require('cors');
-
 
 const { PORT = 3000 } = process.env;
 
@@ -34,47 +29,12 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/signin', celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), login);
-app.post('/signup', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(URL_EXP),
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-  }),
-}), createUser);
-
-app.use('/users', usersRouter);
-app.use('/cards', cardsRouter);
-
-app.use('*', (req, res, next) => {
-  next(new NotFoundError('Страница не найдена'));
-});
+app.use(router);
 
 app.use(errorLogger);
 app.use(errors());
 
-// Обработчик ошибок
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
-  const { statusCode = 500, message } = err;
-
-  res
-    .status(statusCode)
-    .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-});
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
